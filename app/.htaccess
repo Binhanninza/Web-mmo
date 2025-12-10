@@ -1,0 +1,9 @@
+# Tắt liệt kê file
+Options -Indexes
+
+# Chỉ cho phép file web (php, html, css, js, ảnh)
+# Các file rác khác chặn hết
+<FilesMatch "\.(?!(php|html|css|js|png|jpg|jpeg|gif|svg|ico)$).*$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

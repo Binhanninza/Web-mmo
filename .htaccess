@@ -1,0 +1,25 @@
+# Tắt liệt kê danh sách file
+Options -Indexes
+
+# Cấm truy cập file nhạy cảm (.sql, .log, .env, .git...)
+<FilesMatch "\.(sql|log|env|ini|git|sh|bak|inc|txt|md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bảo vệ chính file .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Chặn request độc hại (XSS, SQLi cơ bản)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{QUERY_STRING} (proc/self/environ|union|char|declare|drop|select|insert|delete|update|benchmark) [NC]
+    RewriteRule .* - [F]
+</IfModule>
+
+# Trang lỗi tùy chỉnh
+ErrorDocument 403 "<h1>403 Forbidden</h1>"
+ErrorDocument 404 /404.php

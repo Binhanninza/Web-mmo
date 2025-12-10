@@ -1,0 +1,11 @@
+# Tắt liệt kê file (Hacker không soi được trong thư mục có gì)
+Options -Indexes
+
+# Chặn truy cập trực tiếp vào các file nhạy cảm (nhưng protect.php vẫn include được)
+<Files "protect.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# (Nâng cao) Password lớp 2 bằng Server (Basic Auth)
+# Nếu đại ca muốn dùng cái này thì bảo em, em hướng dẫn tạo file .htpasswd

@@ -1,0 +1,28 @@
+[06-Dec-2025 11:19:05 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:19:05 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:19:07 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:19:07 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:22:03 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:22:03 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:28:29 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:28:29 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:33:15 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:33:15 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:46:15 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:46:15 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:46:17 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:46:17 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:55:45 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:55:45 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:55:48 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:55:48 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 11:57:27 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 11:57:27 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 12:02:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 12:02:56 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 12:04:13 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 0 in /home/vietrust/public_html/includes/footer.php on line 112
+[06-Dec-2025 12:04:13 Asia/Ho_Chi_Minh] PHP Warning:  Undefined array key 1 in /home/vietrust/public_html/includes/footer.php on line 128
+[06-Dec-2025 12:49:24 Asia/Ho_Chi_Minh] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/vietrust/public_html/includes/header.php:127) in /home/vietrust/public_html/app/mission.php on line 41
+[06-Dec-2025 12:49:29 Asia/Ho_Chi_Minh] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/vietrust/public_html/includes/header.php:127) in /home/vietrust/public_html/app/mission.php on line 41
+[06-Dec-2025 12:49:32 Asia/Ho_Chi_Minh] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/vietrust/public_html/includes/header.php:127) in /home/vietrust/public_html/app/mission.php on line 41
+[06-Dec-2025 12:49:36 Asia/Ho_Chi_Minh] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/vietrust/public_html/includes/header.php:127) in /home/vietrust/public_html/app/mission.php on line 41
