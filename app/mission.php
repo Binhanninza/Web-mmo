@@ -339,6 +339,7 @@ $cooldown_left = (isset($_SESSION['cancel_cooldown']) && time() < $_SESSION['can
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     var tempUrl = ''; var tempMid = 0; var waitTime = <?php echo $cooldown_left; ?>;
+    var csrfToken = <?php echo json_encode($_SESSION['csrf_token'] ?? ''); ?>;
 
     $(document).ready(function() { 
         <?php if (isset($_SESSION['swal_flash'])): ?>
@@ -364,7 +365,7 @@ $cooldown_left = (isset($_SESSION['cancel_cooldown']) && time() < $_SESSION['can
         btn.prop('disabled',true).html('<i class="bx bx-loader-alt bx-spin"></i>');
         
         $.ajax({
-            url: 'ajax_gen_link.php', type: 'POST', dataType: 'json', data: { mission_id: mid },
+            url: 'ajax_gen_link.php', type: 'POST', dataType: 'json', data: { mission_id: mid, csrf_token: csrfToken },
             success: function(res) {
                 if(res.status) { showAccessModal(res.url, mid); btn.prop('disabled',false).text(txt); }
                 else { Swal.fire('Lỗi', res.msg, 'error'); btn.prop('disabled',false).text(txt); }
@@ -403,7 +404,7 @@ $cooldown_left = (isset($_SESSION['cancel_cooldown']) && time() < $_SESSION['can
     function submitReport() {
         var mid = $('#report_mid').val(); var reason = $('#reason_select').val(); var note = $('#report_note').val();
         $.ajax({
-            url: 'ajax_report.php', type: 'POST', dataType: 'json', data: { mission_id: mid, reason: reason, note: note },
+            url: 'ajax_report.php', type: 'POST', dataType: 'json', data: { mission_id: mid, reason: reason, note: note, csrf_token: csrfToken },
             success: function(res) { if (res.status) location.reload(); else Swal.fire('Lỗi', res.msg, 'error'); }
         });
     }
