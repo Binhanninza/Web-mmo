@@ -19,7 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ip = $_SERVER['REMOTE_ADDR'];
 
     // 2. CHỐNG BRUTE-FORCE (Check 5 lần sai)
-    $check_spam = $conn->query("SELECT COUNT(*) FROM failed_logins WHERE ip_address = '$ip' AND attempt_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)")->fetch_row()[0];
+    $spam_stmt = $conn->prepare("SELECT COUNT(*) FROM failed_logins WHERE ip_address = ? AND attempt_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)");
+    $spam_stmt->bind_param("s", $ip);
+    $spam_stmt->execute();
+    $check_spam = $spam_stmt->get_result()->fetch_row()[0];
+    $spam_stmt->close();
 
     if ($check_spam >= 5) {
         $msg = "Bạn đã nhập sai quá 5 lần! Vui lòng thử lại sau 10 phút."; $msg_type = "danger";
@@ -50,11 +54,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Nâng cấp pass MD5 lên Bcrypt nếu cần
                     if ($rehash_needed) {
                         $new_hash = password_hash($p, PASSWORD_BCRYPT);
-                        $conn->query("UPDATE users SET password = '$new_hash' WHERE id = {$row['id']}");
+                        $pass_stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+                        $pass_stmt->bind_param("si", $new_hash, $row['id']);
+                        $pass_stmt->execute();
+                        $pass_stmt->close();
                     }
 
                     // Xóa log đăng nhập sai
-                    $conn->query("DELETE FROM failed_logins WHERE ip_address = '$ip'"); 
+                    $del_failed_stmt = $conn->prepare("DELETE FROM failed_logins WHERE ip_address = ?");
+                    $del_failed_stmt->bind_param("s", $ip);
+                    $del_failed_stmt->execute();
+                    $del_failed_stmt->close(); 
                     session_regenerate_id(true); 
                     
                     // LƯU SESSION
@@ -65,14 +75,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($remember) {
                         // 1. Tạo Token ngẫu nhiên an toàn
                         $token = bin2hex(random_bytes(32)); 
-                        
-                        // 2. Lưu Token vào Database (Để đối chiếu sau này)
+                        $token_hash = hash('sha256', $token);
+                        // 2. Lưu Token hash vào Database (Để đối chiếu sau này)
                         $tk_stmt = $conn->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
-                        $tk_stmt->bind_param("si", $token, $row['id']);
+                        $tk_stmt->bind_param("si", $token_hash, $row['id']);
                         $tk_stmt->execute();
+                        $tk_stmt->close();
                         
                         // 3. Lưu Token vào Cookie (7 ngày, HttpOnly để chống XSS lấy trộm)
-                        setcookie('site_remember', $token, time() + (86400 * 7), "/", "", false, true);
+                        set_remember_cookie($token, time() + (86400 * 7));
                     }
                     // --------------------------------------------------
                     
@@ -81,11 +92,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             } else {
                 $msg = "Mật khẩu không chính xác!"; $msg_type = "danger";
-                $conn->query("INSERT INTO failed_logins (ip_address, attempt_time) VALUES ('$ip', NOW())");
+                $failed_stmt = $conn->prepare("INSERT INTO failed_logins (ip_address, attempt_time) VALUES (?, NOW())");
+                $failed_stmt->bind_param("s", $ip);
+                $failed_stmt->execute();
+                $failed_stmt->close();
             }
         } else {
             $msg = "Tài khoản không tồn tại!"; $msg_type = "danger";
-            $conn->query("INSERT INTO failed_logins (ip_address, attempt_time) VALUES ('$ip', NOW())");
+            $failed_stmt = $conn->prepare("INSERT INTO failed_logins (ip_address, attempt_time) VALUES (?, NOW())");
+            $failed_stmt->bind_param("s", $ip);
+            $failed_stmt->execute();
+            $failed_stmt->close();
         }
     }
 }

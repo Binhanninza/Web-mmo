@@ -1,6 +1,8 @@
 <?php
 // FILE: logout.php
 
+require_once __DIR__ . '/includes/security_helpers.php';
+
 // Khởi động session để còn biết đường mà xóa
 session_start();
 
@@ -12,8 +14,7 @@ session_destroy();
 // Phải set thời gian về quá khứ để trình duyệt tự xóa nó đi
 if (isset($_COOKIE['site_remember'])) {
     // Lưu ý: Path '/' phải trùng với lúc tạo cookie
-    setcookie('site_remember', '', time() - 3600, '/'); 
-    unset($_COOKIE['site_remember']);
+    clear_remember_cookie();
 }
 
 // 3. ĐÁ VỀ TRANG LOGIN

@@ -58,3 +58,7 @@ gulpfile.tmp.*
 !/html/*
 /html-demo
 /html-starter-demo
+
+# Local environment secrets
+.env
+.env.local
